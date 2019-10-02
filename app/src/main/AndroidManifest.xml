@@ -12,7 +12,9 @@
         <activity
                 android:name=".PatientActivity"
                 android:label="@string/title_activity_patient"
-                android:theme="@style/AppTheme.NoActionBar">
+                android:theme="@style/AppTheme.NoActionBar"
+                android:parentActivityName="com.example.prescriptionhelper.MainActivity"
+        >
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
