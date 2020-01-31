@@ -21,7 +21,7 @@ object AppMemoryManager {
 
     private lateinit var preferences: SharedPreferences
 
-    lateinit var patientSelected : Patient
+    var patientSelected : Patient? = null
     lateinit var data : AppData
 
 
@@ -31,7 +31,7 @@ object AppMemoryManager {
         val edit = preferences.edit()
         val jsonAlarm = Klaxon().toJsonString(data)
         edit.putString(PREFS_DATA, jsonAlarm)
-        edit.commit()
+        edit.apply()
         Log.w("AppMemoryManager", "SAVED")
     }
 

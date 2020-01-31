@@ -8,15 +8,18 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.View
-import android.widget.ArrayAdapter
+import android.widget.AdapterView
 import android.widget.ListView
 import androidx.appcompat.widget.SearchView
 import com.example.prescriptionhelper.internal.AppMemoryManager
+import com.example.prescriptionhelper.internal.PatientAdapter
+import com.example.prescriptionhelper.models.Patient
+import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
+class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener, AdapterView.OnItemClickListener {
 
-    var dataResult = mutableListOf<String>()
-    lateinit var adapter: ArrayAdapter<String>
+    var dataResult = mutableListOf<Patient>()
+    lateinit var adapter: PatientAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,9 +30,11 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         //http://technxt.net/how-to-create-listview-in-android/
         dataResult.addAll(AppMemoryManager.data.getPatientOptions())
         val lvResults = findViewById<ListView>(R.id.lvResults)
-        adapter = ArrayAdapter(this, R.layout.search_person_item2, dataResult)
+        adapter = PatientAdapter(this, dataResult)
         lvResults.adapter = adapter
+        lvResults.onItemClickListener = this
 
+        btn_patient_add.setOnClickListener { view -> onButtonAddPatientClick(view) }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -45,7 +50,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     //Buttons
     fun onButtonAddPatientClick(view: View) {
-        val intent = Intent(this, PatientActivity::class.java);
+        val intent = Intent(this, PatientActivity::class.java)
         startActivity(intent)
     }
 
@@ -61,5 +66,13 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         dataResult.addAll(AppMemoryManager.data.queryPatient(query))
         adapter.notifyDataSetChanged()
         return true
+    }
+
+    //OnItemClickListener
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+        AppMemoryManager.patientSelected = dataResult[pos]
+        Log.d("SELECIONADO", AppMemoryManager.patientSelected?.name)
+        val intent = Intent(this, PatientActivity::class.java)
+        startActivity(intent)
     }
 }

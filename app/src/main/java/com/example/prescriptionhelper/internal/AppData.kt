@@ -5,7 +5,7 @@ import com.example.prescriptionhelper.models.Patient
 class AppData {
 
     var patients: MutableList<Patient> = mutableListOf()
-    private var patientOption = mutableListOf<String>()
+    private var patientOptions = mutableListOf<Patient>()
     var isPatientOptionDirty : Boolean = true
 
     fun addPatient(patient: Patient)
@@ -22,22 +22,22 @@ class AppData {
         isPatientOptionDirty = true
     }
 
-    fun queryPatient(query: String): List<String>
+    fun queryPatient(query: String): List<Patient>
     {
         if (query == "")
             return getPatientOptions()
 
-        return getPatientOptions().filter { l -> l.contains(query, true) }
+        return getPatientOptions().filter { p -> p.name.contains(query, true) }
     }
 
-    fun getPatientOptions() : MutableList<String>
+    fun getPatientOptions() : MutableList<Patient>
     {
         if (!isPatientOptionDirty)
-            return patientOption
+            return patientOptions
 
-        patientOption.clear()
+        patientOptions.clear()
         for (patient in patients)
-            patientOption.add(patient.toString())
-        return patientOption
+            patientOptions.add(patient)
+        return patientOptions
     }
 }
