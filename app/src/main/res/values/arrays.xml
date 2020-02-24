@@ -1,8 +1,14 @@
 <resources>
-    <string-array name="spinnerItems">
+    <string-array name="amountTypeItems">
         <item>Drops</item>
         <item>Pills</item>
         <item>Milliliters</item>
         <item>Doses</item>
+    </string-array>
+    <string-array name="dosageItems">
+        <item>Hour</item>
+        <item>Day</item>
+        <item>Week</item>
+        <item>Month</item>
     </string-array>
 </resources>

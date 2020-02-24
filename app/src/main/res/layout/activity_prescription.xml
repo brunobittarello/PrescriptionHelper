@@ -11,10 +11,34 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                />
+
+        <EditText
+                android:id="@+id/et_presc_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Name" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Amount"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                />
+
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
             <EditText
                     android:id="@+id/et_presc_count"
                     android:layout_width="0dp"
@@ -28,17 +52,47 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight=".70"
-                    android:entries="@array/spinnerItems"
+                    android:entries="@array/amountTypeItems"
                     />
         </LinearLayout>
 
-        <EditText
-                android:id="@+id/et_presc_name"
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dosage"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                />
+
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+        <EditText
+                android:id="@+id/et_dosage_count"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".30"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Name" />
+                android:inputType="numberDecimal"
+                android:digits="0123456789" />
+
+        <Spinner
+                android:id="@+id/sp_dosage_type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".70"
+                android:entries="@array/dosageItems" />
+    </LinearLayout>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Observation"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                />
+
         <EditText
                 android:id="@+id/et_presc_obs"
                 android:layout_width="match_parent"
@@ -47,24 +101,65 @@
                 android:inputType="textPersonName"
                 android:hint="Observation" />
 
-        <EditText
-                android:id="@+id/editText3"
+        <Space
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="date" />
+                android:layout_height="30dp"
+                />
 
         <TextView
-                android:id="@+id/tv_med_startDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Period"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                />
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:orientation="horizontal">
 
-        <TextView
-                android:id="@+id/tv_med_endDate"
+            <Switch
+                    android:id="@+id/sw_med_startDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Staring in: "
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    />
+            <TextView
+                    android:id="@+id/tv_med_startDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    />
+        </LinearLayout>
+
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:orientation="horizontal">
 
+            <Switch
+                    android:id="@+id/sw_med_endDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ending in: "
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    />
+            <TextView
+                    android:id="@+id/tv_med_endDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    />
+        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
