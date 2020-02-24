@@ -1,0 +1,8 @@
+<resources>
+    <string-array name="spinnerItems">
+        <item>Drops</item>
+        <item>Pills</item>
+        <item>Milliliters</item>
+        <item>Doses</item>
+    </string-array>
+</resources>

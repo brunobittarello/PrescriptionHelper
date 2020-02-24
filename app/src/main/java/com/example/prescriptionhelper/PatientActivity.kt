@@ -1,14 +1,17 @@
 package com.example.prescriptionhelper
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.EditText
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.prescriptionhelper.internal.AppMemoryManager
 import kotlinx.android.synthetic.main.activity_patient.*
+import kotlinx.android.synthetic.main.content_patient.*
 
 
 //https://developer.android.com/training/appbar?hl=pt-br
@@ -21,9 +24,11 @@ class PatientActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        btn_prescription_add.setOnClickListener { view ->
+            val intent = Intent(this, PrescriptionActivity::class.java)
+            startActivity(intent)
+            //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            //    .setAction("Action", null).show()
         }
 
         setSupportActionBar(toolbar)
@@ -31,8 +36,14 @@ class PatientActivity : AppCompatActivity() {
 
         loadLayout()
         isAdding = AppMemoryManager.patientSelected == null
-        if (!isAdding)
+        if (!isAdding) {
             loadPatient()
+            btn_patient_submit.visibility = View.GONE
+        }
+        else {
+            ll_patient_prescriptions.visibility = View.GONE
+            btn_prescription_add.hide()
+        }
         AppMemoryManager.patientSelected = null
     }
 
